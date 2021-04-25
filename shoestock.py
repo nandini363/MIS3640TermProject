@@ -4,7 +4,7 @@ from twilio.rest import Client
 
 
 def isAvailible(url):
-	"""checks if shoe is availible"""
+	# checks if shoe is availible
 	inStock = '''"availability": "https://schema.org/InStock"'''
 	outOfStock = '''"availability": "https://schema.org/OutOfStock"'''
 	r = requests.get(url)
@@ -14,16 +14,16 @@ def isAvailible(url):
 
 
 def sendtext(inStock,number, url):
-	"""sends text if in stock"""
+	#sends text if in stock
 	if inStock:
-		account_sid = "AC503e3d79fa5deb5654e06699f3e1b525" # Change this to your own Twilio account SID
-		auth_token = '89cf9211d801ac1b7705bbdbbfc306e0' # Change this to your own Twilio authorization token
+		account_sid = "ACebefb70b46d9d1d260be901d851d09fb" 
+		auth_token = '061bfe59cbb0aedf229325cd21ccb741' 
 		client = Client(account_sid, auth_token)
 
 		message = client.messages \
 		                .create(
 		                     body="Shoe is now in stock, here is the link: %s" % url,
-		                     from_='+13237451834', #Change this to your own Twilio number
+		                     from_='+17194198995', 
 		                     to=number
 		                 )
 
@@ -32,7 +32,6 @@ def sendtext(inStock,number, url):
 	return False
 
 def stripNumber(number):
-	"""removes any extra symbols from user entered phone number"""
 	#removes any characters that arent actual numbers
 	num = ""
 	charsToRemove = ["-","(",")", " ",]
@@ -42,20 +41,20 @@ def stripNumber(number):
 	return num
 
 def numberVerify(number):
-	"""Verifies phone number"""
+	# Verifies phone number
 	if len(number) != 10:
 		return False 
 	return True
 
 def urlVerify(url):
-	"""Verifies if url is a Nike shoe url"""
+	# Verifies if url is a Nike shoe url
 	if "https://www.nike.com/t/" not in url:
 		return False
 	return True
 
 
 def getUrl():
-	"""User inputs Url"""
+	# User inputs Url
 	urlCheck = False
 	while not urlCheck:
 		url = input("Enter Nike URL:")
@@ -64,10 +63,8 @@ def getUrl():
 			print("Please enter a correct Nike URL")
 	return url
 
-	
-	
 def getNumber():
-	"""User inputs phone number"""
+	# User inputs phone number
 	numCheck = False
 	while not numCheck:
 		number = input("Enter phone number:")
@@ -81,7 +78,7 @@ def getNumber():
 
 
 def shoeBot():
-	"""if not in stock it rechecks every minute until shoe is in stock"""
+	# if not in stock it rechecks every minute until shoe is in stock
 	url = getUrl()
 	number = getNumber()
 	sent = False

@@ -1,8 +1,10 @@
 # MIS3640TermProject
 This is the Term Project repository for Nandini, Gina, and Jaila
 
-How to run ShoeBot:
+Project Website:
+https://jtaylor229.wixsite.com/website
 
+How to run ShoeBot:
 1. pip install requests==2.21.0
 2. pip install twilio==6.57.0
 3. Sign Up for Twilio Account https://www.twilio.com/try-twilio (instruction screenshots on website)
